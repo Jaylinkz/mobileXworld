@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
@@ -8,6 +7,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\rateController;
+use App\Http\Controllers\adminProdController;
+use App\Http\Controllers\admincontroller;
+use App\Http\Controllers\ManagerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,3 +35,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::delete('/cart/delete', [CartController::class, 'delete']);
     Route::delete('/cart/empty', [CartController::class, 'empty']);
 });
+
+// Route::get('dashboard', [ManagerController::class, 'dashboard'])->name('admin.dashboard');
+Route::resource('/Manager', ManagerController::class);
+// Route::get('admin/managers', [ManagerController::class, 'index']);
+// Route::get('managers/create', [ManagerController::class, 'create']);
+// Route::post('managers/create', [ManagerController::class, 'store'])->name('add.manager');
+// Route::get('managers/edit/{id}', [ManagerController::class, 'edit']);
+// Route::post('managers/edit', [ManagerController::class, 'update'])->name('managers.edit');
+// Route::get('managers/delete/{id}', [ManagerController::class, 'destroy'])->name('managers.destroy');
+// Route::get('admin/dashboard', [ManagerController::class, 'dashboard']);
+Route::get('ad/products', [adminProdController::class, 'products']);
+Route::get('dashboard', [admincontroller::class, 'index']);
